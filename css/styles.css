@@ -17,6 +17,17 @@ font-family:sans-serif;
 		height:20;
 		background: #f00
 	}
+	
+	.login {
+		height:100px;
+		width:300px;
+		padding:25px;
+		background:#F1ECDF;
+		z-index: 120;
+		position: absolute;
+		margin: 0 auto;
+	}
+
 
 /** GENERAL-USE CLASSES **/
 
