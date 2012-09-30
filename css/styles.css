@@ -223,10 +223,11 @@ font-family:sans-serif;
 	
 	.main {
 		position:absolute;
-		width:100%;
+		width:655px;
+		height:655px;
 		left:0px;
-		height:100%;
 		background:#C7BA99;
+	
 	}
 	
 	.logo {
@@ -238,14 +239,11 @@ font-family:sans-serif;
 	
 	
 	.image_enlarged {
-		height:100%;
+		width:500px;
 	}
 
 	.image_enlarged img {
-		height:80%;
-		float:right;
-		margin-right:170px;
-		margin-top:70px;
+		width:100%;
 		border:3px solid #F1ECDF;
 		
 	}
@@ -352,6 +350,12 @@ font-family:sans-serif;
 #close-img{
 }
 /** END ADDITIONAL INFO TAB **/
+
+
+
+
+
+
 
 
 

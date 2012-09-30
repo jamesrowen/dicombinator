@@ -41,7 +41,7 @@
 				<div class="patient_info_tab_close">
 					<img src="img/simple-arrow-close.png" id="close-img">
 				</div>
-				<table id="patient_data_table" style="margin: 0 auto">
+				<table id="patient_data_table" >
 					<tr>
 						<td>Patient ID</td>
 						<td>ID</td>
@@ -127,42 +127,21 @@
 <script type="text/javascript" src="js/dicom.js"></script>
 <script>
 
-function resizeMain() {
-	// Sidebar is 400 px, so we need to subtract that in resizing
-	$(".main").width($(window).width() - 400);
-}
-
-function resizePicture() {
-	$("#annotate").width($("#mainPic").width());
-	$("#annotate").height('auto');
-}
 
 $(document).ready( function() {
 
-	resizePicture();
-	$(window).bind('resize', resizeMain());
-	$(window).trigger('resize');
 	
-	$(window).resize(function() {
-		resizeMain();
-		resizePicture();
-	});
 	
 	
 	// Open Tab
 	$('.patient_info_tab').click(function(){
-		var width = $('.main').width();
-		$('.patient_info_tab').animate({
-			width:0
-		}, 300, function() {
 			// Button hidden
 			$('.patient_info').animate({
-		    	width: width
+		    	width: 500
 		  		}, 300, function() {
 		    // Animation complete.
 		    $('#patient_data_table').show();
 		  	});
-		});
 		
 		$('.patient_info_tab').hide();
 		
