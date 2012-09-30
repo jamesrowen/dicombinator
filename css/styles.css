@@ -297,6 +297,19 @@ body {
 	margin-top:7px;
 }
 
+.marker{
+	background-image:url('../img/marker-active.png');
+	width:40px;
+	height:40px;
+}
+
+.number_marker{
+	position:absolute;
+	top:15px;
+	left:20px;
+}
+
+
 
 #close-img{
 }
