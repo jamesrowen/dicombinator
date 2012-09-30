@@ -150,6 +150,17 @@ function addAnnotation(input) {
 	showComment(comments[comments.length - 1]);
 }
 
+function addRegularComment(input) {
+	addComment({
+		id: comments.length + 1,
+		text: $('#commentBox').val(),
+		sliceId: curSliceID,
+		userId: 1,
+	});
+	$('#commentBox').val();
+	showComment(comments[comments.length - 1]);
+}
+
 function loadData(){
 
 	$('#annotate').annotatableImage(newMarker);

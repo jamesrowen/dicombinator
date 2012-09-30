@@ -51,8 +51,10 @@
 				<button type="submit" class="small-rounded-corners">Post</button>
 			</div>
 			
-			<div  id='annotate'>
-				<img src="img/dicomi0.jpg" id="mainPic" class="small-rounded-corners"  style="height:100%" />
+			<div>
+				<div  id='annotate'>
+					<img src="img/dicomi0.jpg" id="mainPic" class="small-rounded-corners"  style="height:100%" />
+				</div>
 			</div>
 
 		</div>
@@ -89,13 +91,20 @@ function resizeMain() {
 	$(".main").width($(window).width() - 400);
 }
 
+function resizePicture() {
+	$("#annotate").width($("#mainPic").width());
+	$("#annotate").height('auto');
+}
+
 $(document).ready( function() {
-	
+
+	resizePicture();
 	$(window).bind('resize', resizeMain());
 	$(window).trigger('resize');
 	
 	$(window).resize(function() {
 		resizeMain();
+		resizePicture();
 	});
 	
 	
