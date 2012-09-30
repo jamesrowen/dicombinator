@@ -21,42 +21,41 @@ url = 'http://dicombinator.jit.su';
 socket = io.connect(url);
 
 socket.on('comment', function(data) {
-	addComment(data, true);
-	
-	sliceSelected(comment.sliceId);
+  addComment(data);
+  
+  sliceSelected(data.sliceId);
 });
 
 socket.on('newuser', function(data) {
-	users.push(data);
+  users.push(data);
 });
 
 socket.on('allComments', function(data) {
-	for (var i = 0; i < data.length; ++i)
-		addComment(data[i], true); 
-	
-	sliceSelected(0);
+  for (var i = 0; i < data.length; ++i)
+    addComment(data[i]); 
+  
+  sliceSelected(0);
 });
 
 socket.on('allUsers', function(data) {
-	users = data;
+  users = data;
 });
 
 $(loadData);
-$(loadThumbnails);
 
 function login(){
-	var name = $('#loginBox').val();
-	if (name != '')
-	{
-		userID = users.length;
-		socket.emit('login', name);
-		$('.login').remove();
-		$('#transparent_background').remove();
-	}
+  var name = $('#loginBox').val();
+  if (name != '')
+  {
+    userID = users.length;
+    socket.emit('login', name);
+    $('.login').remove();
+    $('#transparent_background').remove();
+  }
 }
 
 function sliceSelected(id) {
-	curSliceID = id;
+  curSliceID = id;
   markers = {};
   $('#annotate span').remove();
   conversation.html("");
@@ -94,9 +93,6 @@ $('.comment-stream li').live('click', function() {
 })
 
 $('.thumbnail-list li').live('click', function() {
-  // $('.thumbnails').scrollTop($(this).offset().top)
-  // $('.thumbnails').scrollTop($(this).offset().top)
-
   var offset = $(this).offset().top - $('#thumb-0').offset().top - 10
   $('.thumbnails').animate({ scrollTop: offset }, 400, function() {})
 
@@ -115,8 +111,8 @@ function findComment(id) {
   return comment;
 }
 
-function addComment(comment, fromNode) {
-	comments.push(comment);
+function addComment(comment) {
+  comments.push(comment);
 
   slices[comment.sliceId].commentCount += 1;
   var thumb = $('#thumb-' + comment.sliceId);
@@ -124,12 +120,12 @@ function addComment(comment, fromNode) {
   thumbCommentCount.html(slices[comment.sliceId].commentCount);
   
   if (comment.sliceId == curSliceID)
-	showComment(comment);
+  showComment(comment);
 }
 
 function pushComment(comment)
 {
-	socket.emit('comment', comment);
+  socket.emit('comment', comment);
 }
 
 function showComment(comment) {
@@ -174,7 +170,7 @@ function addMarkers() {
     $('#annotate').addAnnotations(function(attributes) {
       var el = $(document.createElement('span')).addClass('marker').addClass('marker-inactive').html('<p class="number_marker">'+markerAttributes.count+'</p>');
       el.attr('id', 'marker-' + commentId);
-  		return el;
+      return el;
     }, [markerAttributes]);
   })
 }
@@ -182,42 +178,41 @@ function addMarkers() {
 
 
 function newMarker() {
-	// var input = $(document.createElement('input')).attr('type', 'text').blur(function() {addAnnotation(this)});
-	$('.hidden-top').animate({top:0}, 500, function() {
+  // var input = $(document.createElement('input')).attr('type', 'text').blur(function() {addAnnotation(this)});
+  $('.hidden-top').animate({top:0}, 500, function() {
     $(this).find('textarea').focus();
   });
-	return $(document.createElement('span')).addClass('marker-inactive');
+  return $(document.createElement('span')).addClass('marker-inactive');
 }
 
 function addAnnotation(annotation) {
   var note = $('.comment-post.hidden-top').find('textarea').val()
-	var notes = $('#annotate span:last-child').seralizeAnnotations();
-	pushComment({
-		id: comments.length + 1,
-		text: note,
-		sliceId: curSliceID,
-		userId: userID,
-		x: notes[0].x,
-		y: notes[0].y
-	});
-	showComment(comments[comments.length - 1]);
+  var notes = $('#annotate span:last-child').seralizeAnnotations();
+  pushComment({
+    id: comments.length + 1,
+    text: note,
+    sliceId: curSliceID,
+    userId: userID,
+    x: notes[0].x,
+    y: notes[0].y
+  });
   $('.hidden-top').animate({top:-150}, 500, function() {}).find('textarea').val("");
   $('.comment-stream li:last-child').click();
 }
 
 function addRegularComment(input) {
-	pushComment({
-		id: comments.length + 1,
-		text: $('#commentBox').val(),
-		sliceId: curSliceID,
-		userId: userID,
-	});
-	$('#commentBox').val();
+  pushComment({
+    id: comments.length + 1,
+    text: $('#commentBox').val(),
+    sliceId: curSliceID,
+    userId: userID,
+  });
+  $('#commentBox').val();
 }
 
 function loadData(){
 
-	$('#annotate').annotatableImage(newMarker);
+  $('#annotate').annotatableImage(newMarker);
 
   for (i=0; i<12; ++i) {
     slices.push({
@@ -227,28 +222,35 @@ function loadData(){
     });
   }
   
-	$.each(slices, function(i, s){
+  $.each(slices, function(i, s){
 
-		img = "<img src='" + s.fileName + "' style='width:80px; height:80px' />";
-		commentCount = "<span class='comment-count'>0</span>";
-		thumbReference = "<span class='thumb-reference'>" + (i + 1) + "</span>";
+    img = "<img src='" + s.fileName + "' style='width:80px; height:80px' />";
+    commentCount = "<span class='comment-count'>0</span>";
+    thumbReference = "<span class='thumb-reference'>" + (i + 1) + "</span>";
 
-		thumbContent = img + commentCount + thumbReference;
+    thumbContent = img + commentCount + thumbReference;
 
-		thumbs.append("<li class='thumb' id='thumb-" + i + "'>" + thumbContent + "</li>");
-	});
-	
-	// add empty space
-	thumbs.append("<li style='height:600px'></li>");
-		
-	// callback when scrolling the thumbnails
-	$(".thumbnails").scroll(function()
-	{
-		var index = Math.floor($(this).scrollTop()/90);
-		
-		//$('#mainPic').attr('src', 'img/dicomi' + index + '.jpg');
-		sliceSelected(index);
-	});
+    thumbs.append("<li class='thumb' id='thumb-" + i + "'>" + thumbContent + "</li>");
+  });
+  
+  thumbs.append("<li style='height:1000px'></li>");
+
+  var thumbsWrapper = $('.thumbnails')
+
+    
+  thumbsWrapper.scroll(function() {
+    $(".thumbnails").scroll(function() {
+      var maxScrollTop = slices.length * 90 + 18
+      if (thumbsWrapper.scrollTop() > maxScrollTop) {
+        $('.thumbnails').scrollTop(maxScrollTop)
+      }
+
+      var index = Math.round($(this).scrollTop()/100);
+
+      sliceSelected(index);
+    });
+
+  });
 
   addComment({
     id: 1,
