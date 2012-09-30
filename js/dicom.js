@@ -55,7 +55,7 @@ $('.comment-stream li').live('click', function() {
   } else {
     var marker = $('#marker-' + parseInt(comment.inReplyTo));
   }
-
+  $('span.marker').removeClass('marker-active').addClass('marker-inactive');
   marker.addClass('marker-active').removeClass('marker-inactive');
 })
 
