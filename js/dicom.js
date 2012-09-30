@@ -238,17 +238,19 @@ function loadData(){
   var thumbsWrapper = $('.thumbnails')
 
 		
-	thumbsWrapper.scroll(function()
-	$(".thumbnails").scroll(function()
-    var maxScrollTop = slices.length * 90 + 18
-    if (thumbsWrapper.scrollTop() > maxScrollTop) {
-      $('.thumbnails').scrollTop(maxScrollTop)
-    }
+	thumbsWrapper.scroll(function() {
+    $(".thumbnails").scroll(function() {
+      var maxScrollTop = slices.length * 90 + 18
+      if (thumbsWrapper.scrollTop() > maxScrollTop) {
+        $('.thumbnails').scrollTop(maxScrollTop)
+      }
 
-		var index = Math.round($(this).scrollTop()/100);
+      var index = Math.round($(this).scrollTop()/100);
 
-		sliceSelected(index);
-	});
+      sliceSelected(index);
+    });
+
+  });
 
   addComment({
     id: 1,
