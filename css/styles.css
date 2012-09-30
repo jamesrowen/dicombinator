@@ -18,15 +18,7 @@ font-family:sans-serif;
 		background: #f00
 	}
 	
-	.login {
-		height:100px;
-		width:300px;
-		padding:25px;
-		background:#F1ECDF;
-		z-index: 120;
-		position: absolute;
-		margin: 0 auto;
-	}
+	
 
 
 /** GENERAL-USE CLASSES **/
@@ -120,7 +112,20 @@ font-family:sans-serif;
 		border: 2px solid #F58723;
 		resize: none;
 	}
-	
+
+
+.login {
+		z-index:2040;
+		height:100px;
+		width:300px;
+		background-color:#F1ECDF;
+		position:absolute;	
+		top:0px;
+    margin:200px 360px;
+  }
+
+
+
 	.comment-stream {
 		padding:10px;
 		display:block;
@@ -361,6 +366,18 @@ font-family:sans-serif;
 
 #close-img{
 }
+
+#transparent_background{
+	position:absolute;
+	z-index:1000;
+	opacity:0.7;
+	width:1500px;
+	height:768px;
+	background-color:#666;
+}
+
+
+
 /** END ADDITIONAL INFO TAB **/
 
 

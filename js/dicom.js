@@ -51,6 +51,7 @@ function login(){
 		userID = users.length;
 		socket.emit('login', name);
 		$('.login').remove();
+		$('#transparent_background').remove();
 	}
 }
 
