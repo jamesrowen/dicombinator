@@ -2,12 +2,12 @@
 /* ! Layout for desktop version   */
 /* ============================== */
 
-	body {
-		
-	}
-	
+body {
+
+}
+
 	::-webkit-scrollbar {
-		width: 12px;
+		width: 0px;
 	}
 	
 	.black {
@@ -156,17 +156,21 @@
 		position:relative;
 		height:80px;
 		width:80px;
-		background:#333;
-		margin:10px 0px;
+		background:#000;
+		margin-top: 15px;
+		padding-bottom: 15px;
+		border-bottom: 1px dashed #333;
 	}
 	
 	.thumbnail_highlight{
-		width:95px;
+		width:90px;
 		height:90px;
-		background:#F1ECDF;
+		border-top: 10px solid #F1ECDF;
+		border-right: 10px solid #F1ECDF;
+		border-bottom: 10px solid #F1ECDF;
 		position:absolute;
 		top:15px;
-		z-index:1;
+		z-index:1000;
 	}
 	
 	.thumb-reference {
