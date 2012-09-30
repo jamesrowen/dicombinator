@@ -145,8 +145,8 @@ function newMarker() {
 	return $(document.createElement('span')).addClass('marker-inactive');
 }
 
-function addAnnotation(input) {
-  var note = $(input).hide().val();
+function addAnnotation(annotation) {
+  var note = $('.comment-post.hidden-top').hide().find('textarea').val()
 	var notes = $('#annotate span:last-child').seralizeAnnotations();
 	addComment({
 		id: comments.length + 1,
