@@ -128,17 +128,12 @@ function addMarkers() {
   })
 }
 
-function newMarkerElement(commentId, markerAttributes) {
-  return $("<span class='black circle note' id='" + commentId + "'>").html(markerAttributes.count);
-}
 
 
 function newMarker() {
 	// var input = $(document.createElement('input')).attr('type', 'text').blur(function() {addAnnotation(this)});
-	$('.hidden-top').show().animate({top:0}, 500, function() {
-    //callback
-  });
-	return $(document.createElement('span')).addClass('marker');
+	$('.hidden-top').show();
+	return $(document.createElement('span')).addClass('marker-inactive');
 }
 
 function addAnnotation(input) {
