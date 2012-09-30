@@ -107,6 +107,7 @@ font-family:sans-serif;
 		width:205px;
 		height:68px;
 		border: 2px solid #F58723;
+		resize: none;
 	}
 	
 	.comment-stream {

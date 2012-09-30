@@ -141,12 +141,14 @@ function addMarkers() {
 
 function newMarker() {
 	// var input = $(document.createElement('input')).attr('type', 'text').blur(function() {addAnnotation(this)});
-	$('.hidden-top').animate({top:0}, 500, function() {});
+	$('.hidden-top').animate({top:0}, 500, function() {
+    $(this).find('textarea').focus();
+  });
 	return $(document.createElement('span')).addClass('marker-inactive');
 }
 
 function addAnnotation(annotation) {
-  var note = $('.comment-post.hidden-top').hide().find('textarea').val()
+  var note = $('.comment-post.hidden-top').find('textarea').val()
 	var notes = $('#annotate span:last-child').seralizeAnnotations();
 	addComment({
 		id: comments.length + 1,
@@ -157,7 +159,7 @@ function addAnnotation(annotation) {
 		y: notes[0].y
 	});
 	showComment(comments[comments.length - 1]);
-  $('.hidden-top').animate({top:-150}, 500, function() {});
+  $('.hidden-top').animate({top:-150}, 500, function() {}).find('textarea').val("");
   $('.comment-stream li:last-child').click();
 }
 
