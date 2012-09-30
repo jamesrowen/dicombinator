@@ -3,7 +3,14 @@ var thumbs = $('.thumbnail-list');
 var slice = $('#mainPic');
 var markers = {};
 
-var users = [];
+var users = { 
+  1: "Spencer",
+  2: "James",
+  3: "Sri", 
+  4: "Rob",
+  5: "Gavin"
+}
+
 var slices = [];
 var comments = [];
 var curSliceID = 0;
@@ -36,6 +43,22 @@ function loadComments(id) {
   })
 }
 
+$('.comment-stream li').live('click', function() {
+  var commentId = $(this).attr('id').split("-")[1];
+  var comment = findComment(commentId);
+
+  $(".comment-stream li").removeClass("selected");
+  $(this).addClass('selected');
+
+  if (typeof(comment.inReplyTo) === "undefined") {
+    var marker = $('#marker-' + parseInt(commentId));
+  } else {
+    var marker = $('#marker-' + parseInt(comment.inReplyTo));
+  }
+
+  marker.addClass('marker-active');
+})
+
 function findComment(id) {
   var comment;
 
@@ -59,7 +82,8 @@ function addComment(comment) {
 }
 
 function showComment(comment) {
-  commentHtml = $("<li class='small-rounded-corners' id='comment-" + comment.id + "'>" + comment.text + "</li>");
+  user = "<span class='username'>" + users[comment.userId] + ":</span>";
+  commentHtml = $("<li class='small-rounded-corners' id='comment-" + comment.id + "'>" + user + comment.text + "</li>");
   
   if (typeof(comment.inReplyTo) === "undefined") {
     conversation.append(commentHtml);
@@ -97,7 +121,9 @@ function incrementMarkerCount(comment) {
 function addMarkers() {
   $.each(markers, function(commentId, markerAttributes) {
     $('#annotate').addAnnotations(function(attributes) {
-		return $(document.createElement('span')).addClass('marker-inactive').html('<p class="number_marker">'+markerAttributes.count+'</p>');
+      var el = $(document.createElement('span')).addClass('marker').html('<p class="number_marker">'+markerAttributes.count+'</p>');
+      el.attr('id', 'marker-' + commentId);
+  		return el;
     }, [markerAttributes]);
   })
 }
@@ -127,12 +153,6 @@ function addAnnotation(input) {
 function loadData(){
 
 	$('#annotate').annotatableImage(newMarker);
-		
-  users.push({ name: "Spencer", id: 1 })
-  users.push({ name: "James", id: 2 })
-  users.push({ name: "Sri", id: 3 })
-  users.push({ name: "Rob", id: 4 })
-  users.push({ name: "Gavin", id: 5 })
 
   for (i=0; i<12; ++i) {
     slices.push({

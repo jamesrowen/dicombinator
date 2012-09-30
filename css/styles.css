@@ -19,10 +19,10 @@ body {
 /** GENERAL-USE CLASSES **/
 
 	.small-rounded-corners {
-	     -moz-border-radius: 5px;
-	    -webkit-border-radius: 5px;
-	    -khtml-border-radius: 5px;
-	    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+	  -khtml-border-radius: 5px;
+	  border-radius: 5px;
 	}
 
 	.right-rounded-corners{
@@ -74,12 +74,12 @@ body {
 	}
 	
 	.hidden-top {
-		display:none;
 		height:80px;
-		top:0px;
+		top:-150px;
 		left: 300px;
 		padding:25px;
 		background:#F1ECDF;
+		z-index: 100;
 	}
 	
 	.comment-post button {
@@ -120,6 +120,11 @@ body {
 		margin:5px 0px;
 	}
 	
+	.comment-stream .username {
+		color: #444;
+		display: block;
+	}
+
 	.comment-stream li.reply {
 		margin:5px 0px 5px 50px;
 	}
