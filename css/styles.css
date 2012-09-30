@@ -3,6 +3,8 @@
 /* ============================== */
 
 body {
+font-family:sans-serif;
+
 
 }
 
@@ -118,6 +120,7 @@ body {
 		background-color:#D4C9AD;
 		min-height:60px;
 		margin:5px 0px;
+		padding:5px;
 	}
 	
 	.comment-stream .username {
@@ -227,15 +230,12 @@ body {
 	}
 	
 	.logo {
-		position:absolute;
-		top:0px;
-		left:0px;
-		margin:10px;
+		height:50px;
+		padding:22px 10px 14px 10px;
+
 	}
 	
-	.logo img {
-		height:40px;
-	}
+	
 	
 	.image_enlarged {
 		height:100%;
@@ -322,6 +322,30 @@ body {
 	top:15px;
 	left:20px;
 }
+
+
+
+
+
+	#patient_data_table{
+		display:none;
+	}
+
+	#patient_data_table tr{
+		height:40px;
+	}
+
+	#patient_data_table td{
+		padding-left:30px;
+		padding-right:30px;
+	}
+
+	#patient_data_table tr:nth-child(odd){
+		background-color:#f1f1f1;
+	}
+
+
+
 
 
 

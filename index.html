@@ -13,6 +13,8 @@
 	<!-- The 1140px Grid - http://cssgrid.net/ -->
 	<link rel="stylesheet" href="css/1140.css" type="text/css" media="screen" />
 	
+
+
 	<!-- Your styles -->
 	<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />
 	
@@ -32,14 +34,51 @@
 
 		<div class="main">
 			
-			<div class="logo">
-				<img src="img/DICOMbinator.png" />
-			</div>
+				
+			
 			
 			<div class="patient_info">
 				<div class="patient_info_tab_close">
 					<img src="img/simple-arrow-close.png" id="close-img">
 				</div>
+				<table id="patient_data_table" style="margin: 0 auto">
+					<tr>
+						<td>Patient ID</td>
+						<td>ID</td>
+					</tr>
+					<tr>
+						<td>Patient's Sex</td>
+						<td>M</td>
+					</tr>
+					<tr>
+						<td>Patient's weight</td>
+						<td>400lbs</td>
+					</tr>
+					<tr>
+						<td>Study Date</td>
+						<td>M</td>
+					</tr>
+					<tr>
+						<td>Study ID</td>
+						<td>1</td>
+					</tr>
+	
+					<tr>
+						<td>Study Description:</td>
+						<td>Brain Scan</td>
+					</tr>
+	
+	
+					<tr>
+						<td>Study Time</td>
+						<td>11111111</td>
+					</tr>
+	
+				</table>
+
+
+
+
 			</div>
 			
 			<div class="patient_info_tab right-rounded-corners"  >
@@ -64,6 +103,8 @@
 		<div class="sidebar">
 			
 			<div class="comments">
+				<img class="logo" src="img/DICOMbinator.png" />
+				
 				<ul class="comment-stream"></ul>
 				<div class="comment-post">
 					<textarea class="small-rounded-corners" id="commentBox"></textarea>
@@ -119,6 +160,7 @@ $(document).ready( function() {
 		    	width: width
 		  		}, 300, function() {
 		    // Animation complete.
+		    $('#patient_data_table').show();
 		  	});
 		});
 		
@@ -128,6 +170,7 @@ $(document).ready( function() {
 	
 	// Close Tab
 	$('.patient_info_tab_close').click(function() {
+		$('#patient_data_table').hide();
 		$('.patient_info').animate({
 			width: 0
 			}, 300, function() {
