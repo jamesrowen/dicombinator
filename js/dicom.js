@@ -3,22 +3,55 @@ var thumbs = $('.thumbnail-list');
 var slice = $('#mainPic');
 var markers = {};
 
-var users = { 
-  1: "Spencer",
-  2: "James",
-  3: "Sri", 
-  4: "Rob",
-  5: "Gavin"
-}
+var users = ["Spencer", "James", "Sri", "Rob", "Gavin" ];
+var userID = 0;
 
 var slices = [];
 var comments = [];
 var curSliceID = 0;
 
+//
+// Netcode
+// 
+// use this for running locally
+//url = 'http://localhost:8080';
+// use this to run on web
+url = 'http://dicombinator.jit.su';
+
+socket = io.connect(url);
+
+socket.on('comment', function(data) {
+	addComment(data, true);
+	
+	sliceSelected(comment.sliceId);
+});
+
+socket.on('newuser', function(data) {
+	users.push(data);
+});
+
+socket.on('allComments', function(data) {
+	for (var i = 0; i < data.length; ++i)
+		addComment(data[i], true); 
+	
+	sliceSelected(0);
+});
+
+socket.on('allUsers', function(data) {
+	users = data;
+});
+
 $(loadData);
 $(loadThumbnails);
 
-function loadThumbnails(){
+function login(){
+	var name = $('#loginBox').val();
+	if (name != '')
+	{
+		userID = users.length;
+		socket.emit('login', name);
+		$('.login').remove();
+	}
 }
 
 function sliceSelected(id) {
@@ -81,13 +114,21 @@ function findComment(id) {
   return comment;
 }
 
-function addComment(comment) {
+function addComment(comment, fromNode) {
 	comments.push(comment);
 
   slices[comment.sliceId].commentCount += 1;
   var thumb = $('#thumb-' + comment.sliceId);
   var thumbCommentCount = thumb.find("span.comment-count");
   thumbCommentCount.html(slices[comment.sliceId].commentCount);
+  
+  if (comment.sliceId == curSliceID)
+	showComment(comment);
+}
+
+function pushComment(comment)
+{
+	socket.emit('comment', comment);
 }
 
 function showComment(comment) {
@@ -150,11 +191,11 @@ function newMarker() {
 function addAnnotation(annotation) {
   var note = $('.comment-post.hidden-top').find('textarea').val()
 	var notes = $('#annotate span:last-child').seralizeAnnotations();
-	addComment({
+	pushComment({
 		id: comments.length + 1,
 		text: note,
 		sliceId: curSliceID,
-		userId: 1,
+		userId: userID,
 		x: notes[0].x,
 		y: notes[0].y
 	});
@@ -164,14 +205,13 @@ function addAnnotation(annotation) {
 }
 
 function addRegularComment(input) {
-	addComment({
+	pushComment({
 		id: comments.length + 1,
 		text: $('#commentBox').val(),
 		sliceId: curSliceID,
-		userId: 1,
+		userId: userID,
 	});
 	$('#commentBox').val();
-	showComment(comments[comments.length - 1]);
 }
 
 function loadData(){
