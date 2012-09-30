@@ -304,6 +304,14 @@ body {
 	height:40px;
 }
 
+.marker-inactive{
+	background-image:url('../img/marker-inactive.png');
+	width:40px;
+	height:40px;
+}
+
+
+
 .number_marker{
 	position:absolute;
 	top:15px;
