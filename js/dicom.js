@@ -21,7 +21,7 @@ url = 'http://dicombinator.jit.su';
 socket = io.connect(url);
 
 socket.on('comment', function(data) {
-	addComment(data, true);
+	addComment(data);
 	
 	sliceSelected(comment.sliceId);
 });
@@ -32,7 +32,7 @@ socket.on('newuser', function(data) {
 
 socket.on('allComments', function(data) {
 	for (var i = 0; i < data.length; ++i)
-		addComment(data[i], true); 
+		addComment(data[i]); 
 	
 	sliceSelected(0);
 });
@@ -114,7 +114,7 @@ function findComment(id) {
   return comment;
 }
 
-function addComment(comment, fromNode) {
+function addComment(comment) {
 	comments.push(comment);
 
   slices[comment.sliceId].commentCount += 1;
@@ -199,7 +199,6 @@ function addAnnotation(annotation) {
 		x: notes[0].x,
 		y: notes[0].y
 	});
-	showComment(comments[comments.length - 1]);
   $('.hidden-top').animate({top:-150}, 500, function() {}).find('textarea').val("");
   $('.comment-stream li:last-child').click();
 }
