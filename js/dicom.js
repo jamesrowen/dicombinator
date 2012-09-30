@@ -234,7 +234,7 @@ function loadData(){
 	});
 	
 	thumbs.append("<li style='height:1000px'></li>");
-	thumbs.append("<li style='height:600px'></li>");
+
   var thumbsWrapper = $('.thumbnails')
 
 		
@@ -246,8 +246,7 @@ function loadData(){
     }
 
 		var index = Math.round($(this).scrollTop()/100);
-		var index = Math.floor($(this).scrollTop()/90);
-		//$('#mainPic').attr('src', 'img/dicomi' + index + '.jpg');
+
 		sliceSelected(index);
 	});
 
