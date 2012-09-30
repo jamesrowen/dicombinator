@@ -97,20 +97,17 @@ function incrementMarkerCount(comment) {
 function addMarkers() {
   $.each(markers, function(commentId, markerAttributes) {
     $('#annotate').addAnnotations(function(attributes) {
-		return $(document.createElement('span')).addClass('marker').html('<p class="number_marker">'+markerAttributes.count+'</p>');
+		return $(document.createElement('span')).addClass('marker-inactive').html('<p class="number_marker">'+markerAttributes.count+'</p>');
     }, [markerAttributes]);
   })
 }
 
-function newMarkerElement(commentId, markerAttributes) {
-  return $("<span class='black circle note' id='" + commentId + "'>").html(markerAttributes.count);
-}
 
 
 function newMarker() {
 	// var input = $(document.createElement('input')).attr('type', 'text').blur(function() {addAnnotation(this)});
 	$('.hidden-top').show();
-	return $(document.createElement('span')).addClass('marker');
+	return $(document.createElement('span')).addClass('marker-inactive');
 }
 
 function addAnnotation(input) {
