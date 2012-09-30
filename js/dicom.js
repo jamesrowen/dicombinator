@@ -127,6 +127,19 @@ function addAnnotation(input) {
 	showComment(comments[comments.length - 1]);
 }
 
+function addRegularComment(input) {
+  var note = $(input).hide().val();
+	var notes = $('#annotate span:last-child').seralizeAnnotations();
+	addComment({
+		id: comments.length + 1,
+		text: $('#commentBox').val(),
+		sliceId: curSliceID,
+		userId: 1,
+	});
+	$('#commentBox').val('');
+	showComment(comments[comments.length - 1]);
+}
+
 function loadData(){
 
 	$('#annotate').annotatableImage(newMarker);
