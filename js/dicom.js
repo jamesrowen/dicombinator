@@ -3,7 +3,14 @@ var thumbs = $('.thumbnail-list');
 var slice = $('#mainPic');
 var markers = {};
 
-var users = [];
+var users = { 
+  1: "Spencer",
+  2: "James",
+  3: "Sri", 
+  4: "Rob",
+  5: "Gavin"
+}
+
 var slices = [];
 var comments = [];
 var curSliceID = 0;
@@ -59,7 +66,8 @@ function addComment(comment) {
 }
 
 function showComment(comment) {
-  commentHtml = $("<li class='small-rounded-corners' id='comment-" + comment.id + "'>" + comment.text + "</li>");
+  user = "<span class='username'>" + users[comment.userId] + ":</span>";
+  commentHtml = $("<li class='small-rounded-corners' id='comment-" + comment.id + "'>" + user + comment.text + "</li>");
   
   if (typeof(comment.inReplyTo) === "undefined") {
     conversation.append(commentHtml);
@@ -109,7 +117,9 @@ function newMarkerElement(commentId, markerAttributes) {
 
 function newMarker() {
 	// var input = $(document.createElement('input')).attr('type', 'text').blur(function() {addAnnotation(this)});
-	$('.hidden-top').show();
+	$('.hidden-top').show().animate({top:0}, 500, function() {
+    //callback
+  });
 	return $(document.createElement('span')).addClass('marker');
 }
 
@@ -130,12 +140,6 @@ function addAnnotation(input) {
 function loadData(){
 
 	$('#annotate').annotatableImage(newMarker);
-		
-  users.push({ name: "Spencer", id: 1 })
-  users.push({ name: "James", id: 2 })
-  users.push({ name: "Sri", id: 3 })
-  users.push({ name: "Rob", id: 4 })
-  users.push({ name: "Gavin", id: 5 })
 
   for (i=0; i<12; ++i) {
     slices.push({
