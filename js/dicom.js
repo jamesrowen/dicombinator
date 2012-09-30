@@ -59,6 +59,15 @@ $('.comment-stream li').live('click', function() {
   marker.addClass('marker-active').removeClass('marker-inactive');
 })
 
+$('.thumbnail-list li').live('click', function() {
+  // $('.thumbnails').scrollTop($(this).offset().top)
+  // $('.thumbnails').scrollTop($(this).offset().top)
+
+  var offset = $(this).offset().top - $('#thumb-0').offset().top - 10
+  $('.thumbnails').animate({ scrollTop: offset }, 400, function() {})
+
+})
+
 function findComment(id) {
   var comment;
 
@@ -148,6 +157,8 @@ function addAnnotation(input) {
 		y: notes[0].y
 	});
 	showComment(comments[comments.length - 1]);
+  $('.hidden-top').animate({top:-150}, 500, function() {});
+  $('.comment-stream li:last-child').click();
 }
 
 function addRegularComment(input) {
