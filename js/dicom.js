@@ -43,6 +43,22 @@ function loadComments(id) {
   })
 }
 
+$('.comment-stream li').live('click', function() {
+  var commentId = $(this).attr('id').split("-")[1];
+  var comment = findComment(commentId);
+
+  $(".comment-stream li").removeClass("selected");
+  $(this).addClass('selected');
+
+  if (typeof(comment.inReplyTo) === "undefined") {
+    var marker = $('#marker-' + parseInt(commentId));
+  } else {
+    var marker = $('#marker-' + parseInt(comment.inReplyTo));
+  }
+
+  marker.addClass('marker-active');
+})
+
 function findComment(id) {
   var comment;
 
@@ -105,7 +121,9 @@ function incrementMarkerCount(comment) {
 function addMarkers() {
   $.each(markers, function(commentId, markerAttributes) {
     $('#annotate').addAnnotations(function(attributes) {
-		return $(document.createElement('span')).addClass('marker').html('<p class="number_marker">'+markerAttributes.count+'</p>');
+      var el = $(document.createElement('span')).addClass('marker').html('<p class="number_marker">'+markerAttributes.count+'</p>');
+      el.attr('id', 'marker-' + commentId);
+  		return el;
     }, [markerAttributes]);
   })
 }
