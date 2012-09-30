@@ -60,9 +60,6 @@ $('.comment-stream li').live('click', function() {
 })
 
 $('.thumbnail-list li').live('click', function() {
-  // $('.thumbnails').scrollTop($(this).offset().top)
-  // $('.thumbnails').scrollTop($(this).offset().top)
-
   var offset = $(this).offset().top - $('#thumb-0').offset().top - 10
   $('.thumbnails').animate({ scrollTop: offset }, 400, function() {})
 
@@ -198,14 +195,20 @@ function loadData(){
 	});
 	
 	// add empty space
-	thumbs.append("<li style='height:600px'></li>");
+	thumbs.append("<li style='height:1000px'></li>");
 		
+  var thumbsWrapper = $('.thumbnails')
+
 	// callback when scrolling the thumbnails
-	$(".thumbnails").scroll(function()
+	thumbsWrapper.scroll(function()
 	{
-		var index = Math.floor($(this).scrollTop()/90);
+    var maxScrollTop = slices.length * 90 + 18
+    if (thumbsWrapper.scrollTop() > maxScrollTop) {
+      $('.thumbnails').scrollTop(maxScrollTop)
+    }
+
+		var index = Math.round($(this).scrollTop()/100);
 		
-		//$('#mainPic').attr('src', 'img/dicomi' + index + '.jpg');
 		sliceSelected(index);
 	});
 
