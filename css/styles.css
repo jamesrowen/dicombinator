@@ -9,6 +9,12 @@
 	::-webkit-scrollbar {
 		width: 12px;
 	}
+	
+	.black {
+		width:20;
+		height:20;
+		background: #f00
+	}
 
 /** GENERAL-USE CLASSES **/
 
@@ -19,6 +25,13 @@
 	    border-radius: 5px;
 	}
 
+	.right-rounded-corners{
+		-moz-border-radius-bottomright: 5px;
+		border-bottom-right-radius: 5px;
+		-moz-border-radius-topright: 5px;
+		border-top-right-radius: 5px;
+	}
+	
 /** END GENERAL USE CLASSES **/
 	
 /** PAGE WRAPPER **/
@@ -53,6 +66,47 @@
 		border-left:3px solid #D4C9AD;
 	}
 	
+	.comment-post {
+		width:287px;
+		padding:5px;
+		position:absolute;
+		bottom:0px;
+	}
+	
+	.hidden-top {
+		display:none;
+		height:80px;
+		top:0px;
+		left: 300px;
+		padding:25px;
+		background:#F1ECDF;
+	}
+	
+	.comment-post button {
+		margin:0px 2px 0px 0px;
+		height:75px;
+		width:65px;
+		float:right;
+		background:#F58723;
+		border:3px solid #e67f21;
+		
+		font-size:14px;
+		color:#fff;
+		text-transform:uppercase;
+	}
+	
+	.comment-post button:hover {
+		background: #e67f21;
+		cursor:pointer;
+	}
+	
+	.comment-post textarea {
+		float:left;
+		width:205px;
+		height:68px;
+		border: 2px solid #F58723;
+	}
+	
 	.comment-stream {
 		padding:10px;
 		display:block;
@@ -70,6 +124,10 @@
 		margin:5px 0px 5px 50px;
 	}
 	
+	.comment-stream li.selected {
+		border:2px solid #F58723;
+	}
+	
 /** END COMMENT SECTION **/
 
 /** THUMBNAIL SCROLLER **/
@@ -81,7 +139,7 @@
 		height:100%;
 		width:100px;
 		overflow:hidden;
-		background: #222;
+		background: #111;
 	}
 	
 	.thumbnail-list {
@@ -94,6 +152,11 @@
 	
 	.thumbnail-list li {
 		z-index:3;
+	
+		position:relative;
+		height:80px;
+		width:80px;
+		background:#333;
 		margin:10px 0px;
 	}
 	
@@ -104,6 +167,42 @@
 		position:absolute;
 		top:15px;
 		z-index:1;
+	}
+	
+	.thumb-reference {
+		position:absolute;
+		top:-7px;
+		left:-7px;
+		color:#fff;
+	    width: 1.2em;
+	    height: 1.2em;
+	    line-height:1.2em;
+	    text-align:center;
+	    font-family:'Helvetica Neue', Helvetica, sans-serif;
+	    font-weight:bold;
+		font-size:14px;
+		padding:2px;
+	    text-shadow:0px 1px 0px rgba(0,0,0,.15);
+	    -webkit-border-radius:1em;
+	    -moz-border-radius:1em;
+	    border-radius:1em;
+		background: #ff5959;
+	}
+	
+	.comment-count {
+		padding:0px 0px 2px 2px;
+		position:absolute;
+		top:-7px;
+		right:-7px;
+		color:#fff;
+	    width: 25px;
+	    height: 21px;
+	    line-height:1.2em;
+	    text-align:center;
+	    font-family:'Helvetica Neue', Helvetica, sans-serif;
+	    font-weight:bold;
+	    text-shadow:0px 1px 0px rgba(0,0,0,.15);
+		background:url('../img/chat-icon.png') no-repeat;
 	}
 	
 /** END THUMBNAIL SCROLLER **/
@@ -118,15 +217,86 @@
 		background:#C7BA99;
 	}
 	
+	.logo {
+		position:absolute;
+		top:0px;
+		left:0px;
+		margin:10px;
+	}
+	
+	.logo img {
+		height:40px;
+	}
+	
+	.image_enlarged {
+		height:100%;
+	}
+
+	.image_enlarged img {
+		height:80%;
+		float:right;
+		margin-right:170px;
+		margin-top:70px;
+		border:3px solid #F1ECDF;
+		
+	}
+	
 /** END MAIN AREA **/
 
-	.patient_info_tab{
-		background-color:red;
-		top:40px;
-		height:40px;
-		width:40px;
-		position:absolute;
-	}
+/** ADDITIONAL INFO TAB **/
+
+.patient_info_tab{
+	background-color:#F1ECDF;
+	border:3px solid #F58723;
+	border-left:0;
+	top:80px;
+	height:40px;
+	width:40px;
+	position:absolute;
+	
+	
+}
+
+.patient_info_tab:hover {
+	background-color:#fff;
+}
+
+.patient_info{
+	width:0px;
+	height:100%;
+	position:absolute;
+	background-color:#F1ECDF; 
+	border-right:3px solid #D4C9AD;
+}
+
+.patient_info_tab_close {
+	position:absolute;
+	right:0;
+	height:100%;
+	width:80px;
+	vertical-align:middle;
+	text-align:center;
+	background: #D4C9AD;
+	border-left:3px solid #F58723;
+}
+
+.patient_info_tab_close:hover {
+	background-color:#fff;
+}
+
+
+
+#open-img{
+	width:25px;
+	margin-left:8px;
+	
+	margin-top:7px;
+}
+
+
+#close-img{
+}
+/** END ADDITIONAL INFO TAB **/
 
 
 

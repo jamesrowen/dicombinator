@@ -24,37 +24,64 @@
 </head>
 
 
+
 <body style="overflow:hidden">
+
 	
 	<div class="container wrapper">
 
 		<div class="main">
-			<div class="patient_info_tab">
-				>
+			
+			<div class="logo">
+				<img src="img/DICOMbinator.png" />
 			</div>
-			<img id='mainPic' src="img/dicomi0.jpg" style="width:100%; height:100%" />
+			
+			<div class="patient_info">
+				<div class="patient_info_tab_close">
+					<img src="img/simple-arrow-close.png" id="close-img">
+				</div>
+			</div>
+			
+			<div class="patient_info_tab right-rounded-corners"  >
+				<img src="img/patient-icon.png" id="open-img" />
+			</div>
+			
+			<div class="comment-post hidden-top small-rounded-corners">
+				<textarea class="small-rounded-corners"></textarea>
+				<button type="submit" class="small-rounded-corners">Post</button>
+			</div>
+			
+			<div  id='annotate'>
+				<img src="img/dicomi0.jpg" id="close-img" class="small-rounded-corners"  style="height:100%" />
+			</div>
+
 		</div>
+
+
 	
 		<div class="sidebar">
 			
 			<div class="comments">
-				<ul class="comment-stream">
-				</ul>
+				<ul class="comment-stream"></ul>
+				<div class="comment-post">
+					<textarea class="small-rounded-corners"></textarea>
+					<button type="submit" class="small-rounded-corners">Post</button>
+				</div>
 			</div>
 			
 			<div class="thumbnails" style="overflow-y:scroll; overflow-x:hidden">
-				<ul class="thumbnail-list"></ul>
+				<ul class="thumbnail-list">
+				</ul>
 				
-				<div class="thumbnail_highlight"></div>
+				<div class="thumbnail_highlight right-rounded-corners"></div>
 			</div>
 		
-		</div>
+		</div>	
 	</div>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.annotate.js"></script>
 <script type="text/javascript" src="js/dicom.js"></script>
-
 <script>
 
 function resizeMain() {
@@ -70,6 +97,43 @@ $(document).ready( function() {
 	$(window).resize(function() {
 		resizeMain();
 	});
+	
+	
+	// Open Tab
+	$('.patient_info_tab').click(function(){
+		var width = $('.main').width();
+		$('.patient_info_tab').animate({
+			width:0
+		}, 300, function() {
+			// Button hidden
+			$('.patient_info').animate({
+		    	width: width
+		  		}, 300, function() {
+		    // Animation complete.
+		  	});
+		});
+		
+		$('.patient_info_tab').hide();
+		
+	});
+	
+	// Close Tab
+	$('.patient_info_tab_close').click(function() {
+		$('.patient_info').animate({
+			width: 0
+			}, 300, function() {
+			// Tab closed
+			$('.patient_info_tab').animate({
+				width:40
+			}, 300, function() {
+				// Animation complete
+				$('.patient_info_tab').show();
+			})
+		});
+		
+		
+	});
+
 });
 
 </script>
