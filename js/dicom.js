@@ -56,7 +56,7 @@ $('.comment-stream li').live('click', function() {
     var marker = $('#marker-' + parseInt(comment.inReplyTo));
   }
 
-  marker.addClass('marker-active');
+  marker.addClass('marker-active').removeClass('marker-inactive');
 })
 
 function findComment(id) {
@@ -121,7 +121,7 @@ function incrementMarkerCount(comment) {
 function addMarkers() {
   $.each(markers, function(commentId, markerAttributes) {
     $('#annotate').addAnnotations(function(attributes) {
-      var el = $(document.createElement('span')).addClass('marker').html('<p class="number_marker">'+markerAttributes.count+'</p>');
+      var el = $(document.createElement('span')).addClass('marker').addClass('marker-inactive').html('<p class="number_marker">'+markerAttributes.count+'</p>');
       el.attr('id', 'marker-' + commentId);
   		return el;
     }, [markerAttributes]);
@@ -132,7 +132,7 @@ function addMarkers() {
 
 function newMarker() {
 	// var input = $(document.createElement('input')).attr('type', 'text').blur(function() {addAnnotation(this)});
-	$('.hidden-top').show();
+	$('.hidden-top').animate({top:0}, 500, function() {});
 	return $(document.createElement('span')).addClass('marker-inactive');
 }
 
