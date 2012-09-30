@@ -107,19 +107,18 @@ function newMarkerElement(commentId, markerAttributes) {
 }
 
 
-function blackNote() {
-	
-	var text = $(document.createElement('input')).attr('type', 'button').click(function() {addAnnotation()});
-	var span = $(document.createElement('span')).addClass('marker').append(text);
-	
-	return span;
+function newMarker() {
+	// var input = $(document.createElement('input')).attr('type', 'text').blur(function() {addAnnotation(this)});
+	$('.hidden-top').show();
+	return $(document.createElement('span')).addClass('marker');
 }
 
-function addAnnotation() {
+function addAnnotation(input) {
+  var note = $(input).hide().val();
 	var notes = $('#annotate span:last-child').seralizeAnnotations();
 	addComment({
 		id: comments.length + 1,
-		text: "Sed malesuada gravida nulla quis varius. Aliquam faucibus nulla nec ante rutrum dapibus. Phasellus porttitor gravida faucibus. Nulla imperdiet pellentesque.",
+		text: note,
 		sliceId: curSliceID,
 		userId: 1,
 		x: notes[0].x,
@@ -130,7 +129,7 @@ function addAnnotation() {
 
 function loadData(){
 
-	$('#annotate').annotatableImage(blackNote);
+	$('#annotate').annotatableImage(newMarker);
 		
   users.push({ name: "Spencer", id: 1 })
   users.push({ name: "James", id: 2 })
