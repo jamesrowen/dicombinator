@@ -254,7 +254,6 @@
 	width:40px;
 	position:absolute;
 	
-	
 }
 
 .patient_info_tab:hover {
@@ -262,6 +261,8 @@
 }
 
 .patient_info{
+	
+  z-index:1;	
 	width:0px;
 	height:100%;
 	position:absolute;
