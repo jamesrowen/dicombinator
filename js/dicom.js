@@ -16,7 +16,7 @@ var curSliceID = 0;
 // use this for running locally
 //url = 'http://localhost:8080';
 // use this to run on web
-url = 'http://dicombinator.jit.su';
+url = '//localhost:8080';
 
 socket = io.connect(url);
 
